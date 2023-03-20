@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize("freedb_catatan", "freedb_db_catatan", "$SK@*3*rXbgZVfd", {
-    host: "sql.freedb.tech",
+const db = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USER, process.env.PASSWORD, {
+    host: process.env.HOST,
     dialect: "mysql"
 });
 
