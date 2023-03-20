@@ -1,0 +1,84 @@
+POST http://localhost:5000/register
+Content-Type: application/json
+
+{
+    "name": "j",
+    "email": "joko",
+    "password": "12",
+    "confPassword": "12"
+}
+
+
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "joko@gmail.com",
+    "password": "123456"
+}
+
+###
+DELETE  http://localhost:5000/logout
+
+###
+POST  http://localhost:5000/catatan
+Content-Type: application/json
+
+{
+    "userId": 1
+}
+
+###
+POST http://localhost:5000/catatan
+Content-Type: application/json
+
+{
+    "userId":1,
+    "judul": "update judul",
+    "contain": "update content",
+    "folder": null,
+    "createdDate": "12 januari 2012",
+    "updateDate": "12 januari 2012"
+}
+
+###
+PATCH  http://localhost:5000/catatan/2
+Content-Type: application/json
+
+{
+    "judul": "update judul",
+    "contain": "update content",
+    "updateDate": "14-3-2023"
+}
+
+###
+POST http://localhost:5000/catatan/delete
+Content-Type: application/json
+
+{
+    "id": [1,10]
+}
+
+
+###
+POST  http://localhost:5000/folder
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "nameFolder": "bisa 2"
+}
+
+###
+GET http://localhost:5000/folder/1
+Content-Type: application/json
+
+###
+DELETE  http://localhost:5000/folderDelete
+Content-Type: application/json
+
+{
+    "id": 1
+}
+
