@@ -8,7 +8,7 @@ backend_catatan adalah rest api untuk website catatan.
 
 ## Teknologi
 
-Node-Js, SQL, Sequelize, argon2, express
+Node-Js, SQL, Sequelize, argon2, express, validatorjs
 
 ## Fiture
 
