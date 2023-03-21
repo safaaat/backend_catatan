@@ -2,6 +2,7 @@
 /node_modules
 /.pnp
 .pnp.js
+.request.rest
 
 # testing
 /coverage
