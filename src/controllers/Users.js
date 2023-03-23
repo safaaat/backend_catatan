@@ -66,6 +66,8 @@ export const login = async (req, res) => {
 export const logout = async (req, res) => {
     const refreshToken = req.cookies.refreshToken;
 
+    console.log(refreshToken)
+
     if (!refreshToken) return res.sendStatus(204);
     const user = await Users.findOne({
         where: {
@@ -81,4 +83,32 @@ export const logout = async (req, res) => {
     });
     res.clearCookie("refreshToken");
     return res.status(200).json({ msg: "Anda berhasil logout" });
+}
+
+export const refreshToken = async (req, res) => {
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!refreshToken) return req.sendStatus(401);
+
+    const user = await Users.findOne({
+        where: {
+            refresh_token: refreshToken
+        }
+    })
+    if (!user) return res.sendStatus(403);
+
+    try {
+        jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decode) => {
+            if (err) return res.sendStatus(403);
+            const userId = user.id;
+            const name = user.name;
+            const email = user.email;
+            const accessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
+                expiresIn: '15s'
+            });
+            res.json({ accessToken })
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
